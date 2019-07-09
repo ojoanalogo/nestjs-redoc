@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ data.title }}</title>
+  <!-- needed for adaptive design -->
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://quizizz.com/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+  <!--
+    ReDoc doesn't change outer page styles
+    -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body> 
+  <!-- we provide is specification here -->
+  <div id="redoc_container"></div>
+  <script src="https://cdn.jsdelivr.net/npm/redoc/bundles/redoc.standalone.js"> </script>
+  <script>
+    Redoc.init(
+      '{{ data.url }}',
+      {
+        "showConsole": true,
+        "lazyRendering": true,
+        "theme": {
+          "logo": { "gutter": "20px 30px 14px 30px" },
+          "colors": {
+            "primary": {
+              "main": "#000"
+            },
+            "text": { "primary": "#000", "secondary": "#008080" }
+          },
+          "typography": {
+            "headings": { "fontFamily": "Roboto" },
+            "fontFamily": "Roboto, Verdana, Geneva, sans-serif",
+            "fontSize": "16px",
+            "code": { "fontFamily": "\"Courier New\",monospace", "tokens": { "token.property": { "color": "#aofbaa" }, "string": { "color": "#aofbaa" } } },
+          },
+          "rightPanel": { "backgroundColor": "#212121", "width": "50%" },
+          "menu": {
+            "backgroundColor": "#fff",
+            "arrow": { "size": '2em' },
+            "groupItems": {
+              "textTransform": 'capitalize'
+            }
+          },
+          "links": { "color": "#6CC496" }
+        }
+      },
+      document.getElementById("redoc_container")
+    );
+  </script>
+</body>
+
+</html>

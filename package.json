@@ -1,6 +1,6 @@
 {
   "name": "nestjs-redoc",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "NestJS ReDoc frontend",
   "repository": "git@github.com:MrARC/nestjs-redoc.git",
   "author": "Alfonso Reyes",
@@ -33,9 +33,8 @@
     "typescript": "^3.5.3"
   },
   "peerDependencies": {
-    "@nestjs/common": "^6.5.2",
-    "@nestjs/core": "^6.5.2",
-    "@nestjs/swagger": "^3.0.2",
-    "express-handlebars": "^3.1.0"
+    "@nestjs/common": "^6.0.0",
+    "@nestjs/core": "^6.0.0",
+    "@nestjs/swagger": "^3.0.0"
   }
 }

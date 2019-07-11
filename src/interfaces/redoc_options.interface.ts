@@ -20,7 +20,7 @@ export interface RedocOptions {
   requiredPropsFirst?: boolean;
   /** If set, propeties will be sorted alphabetically */
   sortPropsAlphabetically?: boolean;
-  /** If set the fields starting with "x-" will be showed, can be a boolean or a string with names of extensions to display */
+  /** If set the fields starting with "x-" will be shown, can be a boolean or a string with names of extensions to display */
   showExtensions?: boolean | string;
   /** If set, redoc won't inject authentication section automatically */
   noAutoAuth?: boolean;
@@ -32,9 +32,9 @@ export interface RedocOptions {
   nativeScrollbars?: boolean;
   /** This will hide the "Download spec" button, it only hides the button */
   hideDownloadButton?: boolean;
-  /** If set, the search bar will be disable */
+  /** If set, the search bar will be disabled */
   disableSearch?: boolean;
-  /** SHows only required fileds in request samples */
+  /** Shows only required fileds in request samples */
   onlyRequiredInSamples?: boolean;
 }
 

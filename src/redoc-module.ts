@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 import { join } from 'path';
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces';
 import Joi = require('@hapi/joi');
-import exphbs = require('express-handlebars');
+import handlebars = require('express-handlebars');
 
 export class RedocModule {
 
@@ -32,7 +32,7 @@ export class RedocModule {
   }
 
   private static setupFastify() {
-    // throw new NotImplementedException('Fastify is not implemented yet');
+    throw new Error('Fastify is not implemented yet');
   }
 
   private static validateOptionsObject(options: RedocOptions, document: SwaggerDocument): Joi.ValidationResult<RedocOptions> {
@@ -75,7 +75,7 @@ export class RedocModule {
     const finalPath = this.normalizePath(path);
     // Serve swagger spec in another URL appended to the normalized path
     const swaggerDocUrl = join(finalPath, 'swagger.json');
-    const hbs = exphbs.create({
+    const hbs = handlebars.create({
       helpers: {
         toJSON: function (object: any) {
           return JSON.stringify(object);
@@ -120,7 +120,12 @@ export class RedocModule {
     return path.charAt(0) !== '/' ? '/' + path : path;
   }
 
-  private static addVendorExtensions(options: RedocOptions, document: RedocDocument) {
+  /**
+   * Add any vendor options if they are present in the options object
+   * @param options options object
+   * @param document redoc document
+   */
+  private static addVendorExtensions(options: RedocOptions, document: RedocDocument): RedocDocument {
     if (options.logo) {
       const logoOption: Partial<LogoOptions> = { ...options.logo };
       document.info['x-logo'] = logoOption;

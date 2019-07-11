@@ -15,11 +15,11 @@
 
 <div align="center">
 
-[⚡ Features](#%E2%9A%A1-Features) | 
-[🗿 Installation](#%F0%9F%97%BF-Installation) |
-[❓ How to use](#%E2%9D%93-How-to-use) |
-[📜 Changelog](#%F0%9F%93%9C-Changelog) |
-[📋 ToDo](#%F0%9F%93%8B-ToDo)
+[⚡ Features](#-Features) | 
+[🗿 Installation](#-Installation) |
+[❓ How to use](#-How-to-use) |
+[📜 Changelog](#-Changelog) |
+[📋 ToDo](#-ToDo)
 
 </div>
 

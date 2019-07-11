@@ -1,6 +1,6 @@
 {
   "name": "nestjs-redoc",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "NestJS ReDoc frontend",
   "repository": "git@github.com:MrARC/nestjs-redoc.git",
   "author": "Alfonso Reyes",

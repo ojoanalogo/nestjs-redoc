@@ -5,7 +5,6 @@ import { Request, Response } from 'express';
 import { join } from 'path';
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces';
 import { schema } from './model/options.model';
-import Joi = require('@hapi/joi');
 import handlebars = require('express-handlebars');
 
 export class RedocModule {
@@ -34,9 +33,9 @@ export class RedocModule {
         httpAdapter.constructor &&
         httpAdapter.constructor.name === 'FastifyAdapter'
       ) {
-        return await this.setupFastify();
+        return this.setupFastify();
       }
-      return await this.setupExpress(
+      return this.setupExpress(
         path,
         <NestExpressApplication>app,
         redocDocument,
@@ -59,10 +58,11 @@ export class RedocModule {
     document: SwaggerDocument
   ): Promise<RedocOptions> {
     try {
-      return await schema(document).validate(options);
+      const validation = await schema(document).validate(options);
+      return validation;
     } catch (error) {
       // Something went wrong while parsing config object
-      throw new TypeError(error);
+      throw new TypeError(error.message);
     }
   }
 

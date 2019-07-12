@@ -4,6 +4,7 @@ import { SwaggerDocument } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { join } from 'path';
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces';
+import { schema } from './model/options.model';
 import Joi = require('@hapi/joi');
 import handlebars = require('express-handlebars');
 
@@ -15,107 +16,54 @@ export class RedocModule {
    * @param document - Swagger document object
    * @param options - Init options
    */
-  public static setup(
+  public static async setup(
     path: string,
     app: INestApplication,
     document: SwaggerDocument,
     options: RedocOptions
-  ) {
+  ): Promise<void> {
     // Validate options object
-    this.validateOptionsObject(options, document).then(
-      (_options) => {
-        const redocDocument = this.addVendorExtensions(_options, <
-          RedocDocument
-        >document);
-        const httpAdapter: HttpServer = app.getHttpAdapter();
-        if (
-          httpAdapter &&
-          httpAdapter.constructor &&
-          httpAdapter.constructor.name === 'FastifyAdapter'
-        ) {
-          return this.setupFastify();
-        }
-        return this.setupExpress(
-          path,
-          <NestExpressApplication>app,
-          redocDocument,
-          _options
-        );
-      },
-      (err) => {
-        // oh ohh, something bad happened
-        throw new TypeError(err);
+    try {
+      const _options = await this.validateOptionsObject(options, document);
+      const redocDocument = this.addVendorExtensions(_options, <RedocDocument>(
+        document
+      ));
+      const httpAdapter: HttpServer = app.getHttpAdapter();
+      if (
+        httpAdapter &&
+        httpAdapter.constructor &&
+        httpAdapter.constructor.name === 'FastifyAdapter'
+      ) {
+        return await this.setupFastify();
       }
-    );
+      return await this.setupExpress(
+        path,
+        <NestExpressApplication>app,
+        redocDocument,
+        _options
+      );
+    } catch (error) {
+      throw error;
+    }
   }
 
-  private static setupFastify() {
+  /**
+   * Setup fastify (not implemented yet)
+   */
+  private static async setupFastify(): Promise<void> {
     throw new Error('Fastify is not implemented yet');
   }
 
-  private static validateOptionsObject(
+  private static async validateOptionsObject(
     options: RedocOptions,
     document: SwaggerDocument
-  ): Joi.ValidationResult<RedocOptions> {
-    const schema = Joi.object().keys({
-      title: Joi.string()
-        .optional()
-        .default(document.info ? document.info.title : 'Swagger documentation'),
-      logo: {
-        url: Joi.string()
-          .optional()
-          .uri(),
-        backgroundColor: Joi.string()
-          .optional()
-          .regex(new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')),
-        altText: Joi.string().optional(),
-        href: Joi.string()
-          .optional()
-          .uri()
-      },
-      theme: Joi.any().default(undefined),
-      untrustedSpec: Joi.boolean()
-        .optional()
-        .default(false),
-      supressWarnings: Joi.boolean()
-        .optional()
-        .default(true),
-      hideHostname: Joi.boolean()
-        .optional()
-        .default(false),
-      expandResponses: Joi.string().optional(),
-      requiredPropsFirst: Joi.boolean()
-        .optional()
-        .default(true),
-      sortPropsAlphabetically: Joi.boolean()
-        .optional()
-        .default(true),
-      showExtensions: Joi.any()
-        .optional()
-        .default(false),
-      noAutoAuth: Joi.boolean()
-        .optional()
-        .default(true),
-      pathInMiddlePanel: Joi.boolean()
-        .optional()
-        .default(false),
-      hideLoading: Joi.boolean()
-        .optional()
-        .default(false),
-      nativeScrollbars: Joi.boolean()
-        .optional()
-        .default(false),
-      hideDownloadButton: Joi.boolean()
-        .optional()
-        .default(false),
-      disableSearch: Joi.boolean()
-        .optional()
-        .default(false),
-      onlyRequiredInSamples: Joi.boolean()
-        .optional()
-        .default(false)
-    });
-    return schema.validate(options);
+  ): Promise<RedocOptions> {
+    try {
+      return await schema(document).validate(options);
+    } catch (error) {
+      // Something went wrong while parsing config object
+      throw new TypeError(error);
+    }
   }
 
   /**
@@ -176,7 +124,11 @@ export class RedocModule {
     });
   }
 
-  private static normalizePath(path: string) {
+  /**
+   * Normalize path string
+   * @param path - Path string
+   */
+  private static normalizePath(path: string): string {
     return path.charAt(0) !== '/' ? '/' + path : path;
   }
 

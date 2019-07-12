@@ -29,15 +29,19 @@ describe('redoc-module', () => {
       swagger = SwaggerModule.createDocument(app, options);
     });
 
-    it('should run the setup (non-normalized path', () => {
-      expect(RedocModule.setup('some/path', app, swagger, {})).toBe(undefined);
+    it('should run the setup (non-normalized path', async () => {
+      expect(await RedocModule.setup('some/path', app, swagger, {})).toBe(
+        undefined
+      );
     });
-    it('should run the setup (normalized path', () => {
-      expect(RedocModule.setup('/some/path', app, swagger, {})).toBe(undefined);
+    it('should run the setup (normalized path', async () => {
+      expect(await RedocModule.setup('/some/path', app, swagger, {})).toBe(
+        undefined
+      );
     });
-    it('shoudld be fine with the setup with logo options', () => {
+    it('shoudld be fine with the setup with logo options', async () => {
       expect(
-        RedocModule.setup('some/path', app, swagger, {
+        await RedocModule.setup('some/path', app, swagger, {
           logo: {
             url: 'http://localhost:3333/test.png'
           }
@@ -45,9 +49,9 @@ describe('redoc-module', () => {
       ).toBe(undefined);
     });
     it('should server the documentation', async () => {
-      swagger.info = {title: 'some title'};
-      RedocModule.setup('/doc', app, swagger, {
-        theme: {},
+      swagger.info = { title: 'some title' };
+      await RedocModule.setup('/doc', app, swagger, {
+        theme: {}
       });
       await app.init();
       await request(app.getHttpServer())
@@ -98,6 +102,8 @@ describe('redoc-module', () => {
           logo: { url: 'notaUrl' }
         });
       } catch (error) {
+        console.log(typeof error);
+        console.log(error);
         expect(typeof error).toBe(TypeError);
         expect(error.message).toBe(
           'ValidationError: child "logo" fails because [child "url" fails because ["url" must be a valid uri]]'

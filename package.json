@@ -8,16 +8,22 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./dist && tsc -p tsconfig.json",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts",
+    "lint": "tslint -p tsconfig.json",
     "prepublish:next": "npm run build",
     "publish:next": "npm publish --access public --tag next",
     "prepublish": "npm run build",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --access public",
+    "test": "jest"
   },
   "dependencies": {
     "@hapi/joi": "^15.1.0",
     "express-handlebars": "^3.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "@nestjs/common": "^6.5.2",
     "@nestjs/core": "^6.5.2",
     "@nestjs/platform-express": "^6.5.2",
@@ -25,11 +31,17 @@
     "@types/express": "^4.17.0",
     "@types/express-handlebars": "^0.0.32",
     "@types/hapi__joi": "^15.0.2",
+    "@types/jest": "^24.0.15",
     "@types/node": "^12.6.2",
+    "husky": "^3.0.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^2.6.3",
     "rxjs": "^6.5.2",
+    "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.3"
   },
   "peerDependencies": {

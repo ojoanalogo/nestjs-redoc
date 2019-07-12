@@ -1,2 +1,9 @@
 package-lock.json
 yarn.lock
+.prettier*
+tslint.json
+tsconfig.json
+src/
+.github/
+.huskyrc
+commitlint.*

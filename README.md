@@ -18,6 +18,7 @@
 [⚡ Features](#-Features) | 
 [🗿 Installation](#-Installation) |
 [❓ How to use](#-How-to-use) |
+[👨‍💻👩‍💻 Contributors](#--Contributors) |
 [📜 Changelog](#-Changelog) |
 [📋 ToDo](#-ToDo)
 
@@ -74,7 +75,7 @@ const redocOptions: RedocOptions = {
   hideHostname: false
 };
 // Instead of using SwaggerModule.setup() you call this module
-RedocModule.setup('/docs', app, document, redocOptions);
+await RedocModule.setup('/docs', app, document, redocOptions);
 ```
 
 ## Available options
@@ -114,11 +115,17 @@ Apply the properties defined in ResolvedThemeInterface to the key called "theme"
 | altText         | Alt tag for Logo                                                                      | string | PetStore |
 | href            | href tag for Logo, it defaults to the host used for your API spec                     | string |
 
+## 👨‍💻👩‍💻 Contributors
+
+Special thanks to [Jay McDoniel (jmcdo29)](https://github.com/jmcdo29) who helped with code refactoring and unit tests! 👏
+
 ## 📜 Changelog
 
 Bellow are a list of changes, some might go undocumented
 
 * 1.0.0 - First release
+* 1.1.0 - Minor changes, nothing too important
+* 1.2.0 - Added unit tests, refactored code
 
 ## 📋 ToDo
 

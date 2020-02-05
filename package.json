@@ -5,17 +5,15 @@
   "repository": "git@github.com:qiwi/nestjs-redoc.git",
   "author": "Alfonso Reyes",
   "main": "dist/index.js",
+  "private": false,
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./dist && tsc -p tsconfig.json",
     "format": "prettier --write src/**/*.ts",
     "format:check": "prettier --check src/**/*.ts",
     "lint": "tslint -p tsconfig.json",
-    "prepublish:next": "npm run build",
-    "publish:next": "npm publish --access public --tag next",
-    "prepublish": "npm run build",
-    "publish": "npm publish --access public",
-    "test": "jest"
+    "test": "jest",
+    "release": "semantic-release"
   },
   "dependencies": {
     "@hapi/joi": "^15.1.0",

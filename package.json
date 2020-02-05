@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-redoc",
+  "name": "@qiwi/nestjs-redoc",
   "version": "1.2.0",
   "description": "NestJS ReDoc frontend",
   "repository": "git@github.com:MrARC/nestjs-redoc.git",

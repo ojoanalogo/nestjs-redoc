@@ -1,6 +1,6 @@
 import { HttpServer, INestApplication } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { SwaggerDocument } from '@nestjs/swagger';
+import { OpenAPIObject } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { join } from 'path';
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces';
@@ -18,7 +18,7 @@ export class RedocModule {
   public static async setup(
     path: string,
     app: INestApplication,
-    document: SwaggerDocument,
+    document: OpenAPIObject,
     options: RedocOptions
   ): Promise<void> {
     // Validate options object
@@ -55,7 +55,7 @@ export class RedocModule {
 
   private static async validateOptionsObject(
     options: RedocOptions,
-    document: SwaggerDocument
+    document: OpenAPIObject
   ): Promise<RedocOptions> {
     try {
       const validation = await schema(document).validate(options);

@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { INestApplication } from '@nestjs/common';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 import {
-  SwaggerDocument,
+  OpenAPIObject,
   SwaggerModule,
   DocumentBuilder
 } from '@nestjs/swagger';
@@ -13,7 +13,7 @@ import { RedocModule } from './redoc-module';
 
 describe('redoc-module', () => {
   let app: INestApplication;
-  let swagger: SwaggerDocument;
+  let swagger: OpenAPIObject;
 
   it('should be truthy', () => {
     expect(RedocModule).toBeTruthy();
@@ -49,7 +49,10 @@ describe('redoc-module', () => {
       ).resolves.toBe(undefined);
     });
     it('should server the documentation', async () => {
-      swagger.info = { title: 'some title' };
+      swagger.info = {
+        title: 'some title',
+        version: '0.1'
+      };
       await RedocModule.setup('/doc', app, swagger, {
         theme: {}
       });

@@ -18,7 +18,7 @@ export const schema = (document: OpenAPIObject) =>
         .optional()
         .uri()
     },
-    theme: Joi.any().default(undefined),
+    theme: Joi.any(),
     untrustedSpec: Joi.boolean()
       .optional()
       .default(false),

@@ -108,7 +108,7 @@ describe('redoc-module', () => {
         // console.log(error);
         // expect(typeof error).toBe(TypeError);
         expect(error.message).toBe(
-          'child "logo" fails because [child "url" fails because ["url" must be a valid uri]]'
+          '\"logo.url\" must be a valid uri'
         );
       }
     });

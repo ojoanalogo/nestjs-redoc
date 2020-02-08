@@ -127,6 +127,7 @@ Bellow are a list of changes, some might go undocumented
 - 1.1.0 - Minor changes, nothing too important
 - 1.2.0 - Added unit tests, refactored code
 - 1.2.1 - Updated to work with the latest version of nest swagger module
+- 1.2.2 - Fixed issue with URL on windows
 
 ## 📋 ToDo
 

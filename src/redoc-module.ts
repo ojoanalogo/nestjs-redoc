@@ -83,10 +83,10 @@ export class RedocModule {
     // Normalize URL path to use
     const finalPath = this.normalizePath(path);
     // Add a slash to the end of the URL path to use in URL resolve function
-    const resolvedPath = (str: string): string =>
-      str.slice(-1) !== '/' ? str + '/' : str;
+    const resolvedPath =
+      finalPath.slice(-1) !== '/' ? finalPath + '/' : finalPath;
     // Serve swagger spec in another URL appended to the normalized path
-    const swaggerDocUrl = resolve(resolvedPath(finalPath), 'swagger.json');
+    const swaggerDocUrl = resolve(resolvedPath, 'swagger.json');
     const hbs = handlebars.create({
       helpers: {
         toJSON: function(object: any) {

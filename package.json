@@ -1,6 +1,6 @@
 {
   "name": "nestjs-redoc",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "NestJS ReDoc frontend",
   "repository": "git@github.com:mxarc/nestjs-redoc.git",
   "author": "Alfonso Reyes",
@@ -16,7 +16,8 @@
     "publish:next": "npm publish --access public --tag next",
     "prepublish": "npm run build",
     "publish": "npm publish --access public",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.0",

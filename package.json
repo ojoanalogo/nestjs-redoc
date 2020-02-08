@@ -2,7 +2,7 @@
   "name": "nestjs-redoc",
   "version": "1.2.1",
   "description": "NestJS ReDoc frontend",
-  "repository": "git@github.com:MrARC/nestjs-redoc.git",
+  "repository": "git@github.com:mxarc/nestjs-redoc.git",
   "author": "Alfonso Reyes",
   "main": "dist/index.js",
   "private": false,

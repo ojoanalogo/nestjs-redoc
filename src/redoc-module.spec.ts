@@ -1,13 +1,8 @@
-import 'reflect-metadata';
-
 import { INestApplication } from '@nestjs/common';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
-import {
-  OpenAPIObject,
-  SwaggerModule,
-  DocumentBuilder
-} from '@nestjs/swagger';
+import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { Test } from '@nestjs/testing';
+import 'reflect-metadata';
 import * as request from 'supertest';
 import { RedocModule } from './redoc-module';
 
@@ -29,13 +24,18 @@ describe('redoc-module', () => {
       swagger = SwaggerModule.createDocument(app, options);
     });
 
-    it('should run the setup (non-normalized path', async () => {
+    it('should run the setup (non-normalized path)', async () => {
       expect(RedocModule.setup('some/path', app, swagger, {})).resolves.toBe(
         undefined
       );
     });
-    it('should run the setup (normalized path', async () => {
+    it('should run the setup (normalized path)', async () => {
       expect(RedocModule.setup('/some/path', app, swagger, {})).resolves.toBe(
+        undefined
+      );
+    });
+    it('should run the setup (normalized path 2)', async () => {
+      expect(RedocModule.setup('/some/path/', app, swagger, {})).resolves.toBe(
         undefined
       );
     });
@@ -107,9 +107,7 @@ describe('redoc-module', () => {
       } catch (error) {
         // console.log(error);
         // expect(typeof error).toBe(TypeError);
-        expect(error.message).toBe(
-          '\"logo.url\" must be a valid uri'
-        );
+        expect(error.message).toBe('"logo.url" must be a valid uri');
       }
     });
   });

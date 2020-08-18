@@ -15,7 +15,7 @@
 
 <div align="center">
 
-[⚡ Features](#-Features) | 
+[⚡ Features](#-Features) |
 [🗿 Installation](#-Installation) |
 [❓ How to use](#-How-to-use) |
 [👨‍💻👩‍💻 Contributors](#--Contributors) |
@@ -34,14 +34,14 @@
 
 ## ⚡ Features
 
-* Customizable theme
-* It's almost a drop in replacement for you current swagger UI, you only need to import this package and modify any settings you may want to change (e.g: Page title, ReDoc options)
+- Customizable theme
+- It's almost a drop in replacement for you current swagger UI, you only need to import this package and modify any settings you may want to change (e.g: Page title, ReDoc options)
 
 ## 🗿 Installation
 
-Using npm: ```npm i nestjs-redoc```
+Using npm: `npm i nestjs-redoc`
 
-Using yarn: ```yarn add nestjs-redoc```
+Using yarn: `yarn add nestjs-redoc`
 
 ## ❓ How to use
 
@@ -102,7 +102,7 @@ await RedocModule.setup('/docs', app, document, redocOptions);
 | disableSearch           | If set, the search bar will be disabled                                                                                                               | boolean      |
 | onlyRequiredInSamples   | Shows only required fileds in request samples                                                                                                         | boolean      |
 
-**Note**: If you want to change your ReDoc theme settings, take a look at the official ReDoc documentation: https://github.com/Redocly/redoc/blob/master/src/theme.ts
+**Note**: If you want to change your ReDoc theme settings, take a look at the official ReDoc documentation: <https://github.com/Redocly/redoc/blob/master/src/theme.ts>
 
 Apply the properties defined in ResolvedThemeInterface to the key called "theme" in the redoc options
 
@@ -123,12 +123,13 @@ Special thanks to [Jay McDoniel (jmcdo29)](https://github.com/jmcdo29) who helpe
 
 Bellow are a list of changes, some might go undocumented
 
-* 1.0.0 - First release
-* 1.1.0 - Minor changes, nothing too important
-* 1.2.0 - Added unit tests, refactored code
+- 1.0.0 - First release
+- 1.1.0 - Minor changes, nothing too important
+- 1.2.0 - Added unit tests, refactored code
+- 1.2.1 - Updated to work with the latest version of nest swagger module
+- 1.2.2 - Fixed issue with URL on windows
 
 ## 📋 ToDo
 
-* Add unit tests (i'm still learning how to)
-* Add Fastify support
-* Add the option to use a spec URL instead of document
+- Add Fastify support
+- Add the option to use a spec URL instead of document

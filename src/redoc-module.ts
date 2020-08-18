@@ -3,6 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { OpenAPIObject } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { join } from 'path';
+import { resolve } from 'url';
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces';
 import { schema } from './model/options.model';
 import handlebars = require('express-handlebars');
@@ -24,9 +25,10 @@ export class RedocModule {
     // Validate options object
     try {
       const _options = await this.validateOptionsObject(options, document);
-      const redocDocument = this.addVendorExtensions(_options, <RedocDocument>(
-        document
-      ));
+      const redocDocument = this.addVendorExtensions(
+        _options,
+        <RedocDocument>document
+      );
       const httpAdapter: HttpServer = app.getHttpAdapter();
       if (
         httpAdapter &&
@@ -80,8 +82,11 @@ export class RedocModule {
   ) {
     // Normalize URL path to use
     const finalPath = this.normalizePath(path);
+    // Add a slash to the end of the URL path to use in URL resolve function
+    const resolvedPath =
+      finalPath.slice(-1) !== '/' ? finalPath + '/' : finalPath;
     // Serve swagger spec in another URL appended to the normalized path
-    const swaggerDocUrl = join(finalPath, 'swagger.json');
+    const swaggerDocUrl = resolve(resolvedPath, 'swagger.json');
     const hbs = handlebars.create({
       helpers: {
         toJSON: function(object: any) {

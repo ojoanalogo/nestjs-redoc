@@ -84,7 +84,8 @@ await RedocModule.setup('/docs', app, document, redocOptions);
 
 | Option                  | Description                                                                                                                                           | Type         | Note                                       |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------ |
-| title                   | Web site title (e.g: ReDoc documentation)                                                                                                             | string       | Fallbacks to the document title if not set |
+| title                   | Web site title (e.g: ReDoc documentation)                                                                                                             | string       |
+| favicon                   | Web site favicon URL                                                                         | string       | Fallbacks to the document title if not set |
 | logo                    | Logo Options                                                                                                                                          | LogoOptions  | See LogoOptions table                      |
 | theme                   | Theme options                                                                                                                                         | ThemeOptions | See ThemeOptions info                      |
 | untrustedSpec           | If set, the spec is considered untrusted and all HTML/markdown is sanitized to prevent XSS, by default is false                                       | boolean      |

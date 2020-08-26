@@ -1,6 +1,8 @@
 export interface RedocOptions {
   /** Web site title (e.g: ReDoc documentation) */
   title?: string;
+  /** Web site favicon URL */
+  favicon?: string;
   /** Logo Options */
   logo?: LogoOptions;
   /** Theme options */
@@ -36,6 +38,8 @@ export interface RedocOptions {
   disableSearch?: boolean;
   /** Shows only required fileds in request samples */
   onlyRequiredInSamples?: boolean;
+  /** Name of the swagger json spec file */
+  docName?: string;
 }
 
 export interface RedocTheme {

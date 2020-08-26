@@ -6,8 +6,7 @@ export const schema = (document: OpenAPIObject) =>
     title: Joi.string()
       .optional()
       .default(document.info ? document.info.title : 'Swagger documentation'),
-    favicon: Joi.string()
-      .optional(),
+    favicon: Joi.string().optional(),
     logo: {
       url: Joi.string()
         .optional()
@@ -63,5 +62,5 @@ export const schema = (document: OpenAPIObject) =>
       .default(false),
     docName: Joi.string()
       .optional()
-      .default('swagger'),
+      .default('swagger')
   });

@@ -85,7 +85,7 @@ await RedocModule.setup('/docs', app, document, redocOptions);
 | Option                  | Description                                                                                                                                           | Type         | Note                                       |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------ |
 | title                   | Web site title (e.g: ReDoc documentation)                                                                                                             | string       |
-| favicon                   | Web site favicon URL                                                                         | string       | Fallbacks to the document title if not set |
+| favicon                 | Web site favicon URL                                                                                                                                  | string       | Fallbacks to the document title if not set |
 | logo                    | Logo Options                                                                                                                                          | LogoOptions  | See LogoOptions table                      |
 | theme                   | Theme options                                                                                                                                         | ThemeOptions | See ThemeOptions info                      |
 | untrustedSpec           | If set, the spec is considered untrusted and all HTML/markdown is sanitized to prevent XSS, by default is false                                       | boolean      |
@@ -118,7 +118,8 @@ Apply the properties defined in ResolvedThemeInterface to the key called "theme"
 
 ## 👨‍💻👩‍💻 Contributors
 
-Special thanks to [Jay McDoniel (jmcdo29)](https://github.com/jmcdo29) who helped with code refactoring and unit tests! 👏
+- Special thanks to [Jay McDoniel (jmcdo29)](https://github.com/jmcdo29) who helped with code refactoring and unit tests! 👏
+- @joemaidman
 
 ## 📜 Changelog
 
@@ -129,6 +130,7 @@ Bellow are a list of changes, some might go undocumented
 - 1.2.0 - Added unit tests, refactored code
 - 1.2.1 - Updated to work with the latest version of nest swagger module
 - 1.2.2 - Fixed issue with URL on windows
+- 1.3.0 - Added favicon option (by @joemaidman)
 
 ## 📋 ToDo
 

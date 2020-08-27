@@ -86,7 +86,7 @@ export class RedocModule {
     const resolvedPath =
       finalPath.slice(-1) !== '/' ? finalPath + '/' : finalPath;
     // Serve swagger spec in another URL appended to the normalized path
-    const swaggerDocUrl = resolve(resolvedPath, 'swagger.json');
+    const docUrl = resolve(resolvedPath, `${options.docName}.json`);
     const hbs = handlebars.create({
       helpers: {
         toJSON: function(object: any) {
@@ -101,11 +101,12 @@ export class RedocModule {
     app.set('views', join(__dirname, '..', 'views'));
     // Serve ReDoc Frontend
     app.getHttpAdapter().get(finalPath, (req: Request, res: Response) => {
-      const { title, theme, logo, ...otherOptions } = options;
+      const { title, favicon, theme, logo, ...otherOptions } = options;
       const renderData = {
         data: {
-          title: title,
-          docUrl: swaggerDocUrl,
+          title,
+          docUrl,
+          favicon,
           options: otherOptions,
           ...(theme && {
             theme: {
@@ -122,7 +123,7 @@ export class RedocModule {
       });
     });
     // Serve swagger spec json
-    app.getHttpAdapter().get(swaggerDocUrl, (req: Request, res: Response) => {
+    app.getHttpAdapter().get(docUrl, (req: Request, res: Response) => {
       res.setHeader('Content-Type', 'application/json');
       res.send(document);
     });

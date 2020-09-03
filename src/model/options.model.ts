@@ -20,37 +20,15 @@ export const schema = (document: OpenAPIObject) =>
     supressWarnings: Joi.boolean().optional().default(true),
     hideHostname: Joi.boolean().optional().default(false),
     expandResponses: Joi.string().optional(),
-    requiredPropsFirst: Joi.boolean()
-      .optional()
-      .default(true),
-    sortPropsAlphabetically: Joi.boolean()
-      .optional()
-      .default(true),
-    showExtensions: Joi.any()
-      .optional()
-      .default(false),
-    noAutoAuth: Joi.boolean()
-      .optional()
-      .default(true),
-    pathInMiddlePanel: Joi.boolean()
-      .optional()
-      .default(false),
-    hideLoading: Joi.boolean()
-      .optional()
-      .default(false),
-    nativeScrollbars: Joi.boolean()
-      .optional()
-      .default(false),
-    hideDownloadButton: Joi.boolean()
-      .optional()
-      .default(false),
-    disableSearch: Joi.boolean()
-      .optional()
-      .default(false),
-    onlyRequiredInSamples: Joi.boolean()
-      .optional()
-      .default(false),
-    docName: Joi.string()
-      .optional()
-      .default('swagger')
+    requiredPropsFirst: Joi.boolean().optional().default(true),
+    sortPropsAlphabetically: Joi.boolean().optional().default(true),
+    showExtensions: Joi.any().optional().default(false),
+    noAutoAuth: Joi.boolean().optional().default(true),
+    pathInMiddlePanel: Joi.boolean().optional().default(false),
+    hideLoading: Joi.boolean().optional().default(false),
+    nativeScrollbars: Joi.boolean().optional().default(false),
+    hideDownloadButton: Joi.boolean().optional().default(false),
+    disableSearch: Joi.boolean().optional().default(false),
+    onlyRequiredInSamples: Joi.boolean().optional().default(false),
+    docName: Joi.string().optional().default('swagger'),
   });

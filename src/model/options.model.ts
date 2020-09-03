@@ -8,27 +8,17 @@ export const schema = (document: OpenAPIObject) =>
       .default(document.info ? document.info.title : 'Swagger documentation'),
     favicon: Joi.string().optional(),
     logo: {
-      url: Joi.string()
-        .optional()
-        .uri(),
+      url: Joi.string().optional().uri(),
       backgroundColor: Joi.string()
         .optional()
         .regex(new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')),
       altText: Joi.string().optional(),
-      href: Joi.string()
-        .optional()
-        .uri()
+      href: Joi.string().optional().uri(),
     },
     theme: Joi.any(),
-    untrustedSpec: Joi.boolean()
-      .optional()
-      .default(false),
-    supressWarnings: Joi.boolean()
-      .optional()
-      .default(true),
-    hideHostname: Joi.boolean()
-      .optional()
-      .default(false),
+    untrustedSpec: Joi.boolean().optional().default(false),
+    supressWarnings: Joi.boolean().optional().default(true),
+    hideHostname: Joi.boolean().optional().default(false),
     expandResponses: Joi.string().optional(),
     requiredPropsFirst: Joi.boolean()
       .optional()

@@ -97,7 +97,7 @@ export class RedocModule {
       },
     });
     // spread redoc options
-    const { title, favicon, theme, logo, ...otherOptions } = options;
+    const { title, favicon, theme, ...otherOptions } = options;
     // create render object
     const renderData = {
       data: {
@@ -132,7 +132,7 @@ export class RedocModule {
         // whoosh
         res.send(redocHTML);
       };
-      if (options.auth.enabled) {
+      if (options.auth?.enabled) {
         const { user, password } = options.auth;
         expressAuth({ users: { [user]: password }, challenge: true })(
           req,

@@ -124,9 +124,10 @@ export class RedocModule {
     // Serve ReDoc Frontend
     httpAdapter.get(finalPath, async (req: Request, res: Response) => {
       const sendPage = () => {
+        // Content-Security-Policy: worker-src 'self' blob:
         res.setHeader(
           'Content-Security-Policy',
-          "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';"
+          "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; worker-src * 'unsafe-inline' 'unsafe-eval' blob:; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';"
         );
         // whoosh
         res.send(redocHTML);

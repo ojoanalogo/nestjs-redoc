@@ -72,7 +72,12 @@ const redocOptions: RedocOptions = {
   },
   sortPropsAlphabetically: true,
   hideDownloadButton: false,
-  hideHostname: false
+  hideHostname: false,
+  auth: {
+    enabled: true,
+    user: 'admin',
+    password: '123'
+  }
 };
 // Instead of using SwaggerModule.setup() you call this module
 await RedocModule.setup('/docs', app, document, redocOptions);

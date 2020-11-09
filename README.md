@@ -102,6 +102,11 @@ await RedocModule.setup('/docs', app, document, redocOptions);
 | hideDownloadButton      | This will hide the "Download spec" button, it only hides the button                                                                                   | boolean      |
 | disableSearch           | If set, the search bar will be disabled                                                                                                               | boolean      |
 | onlyRequiredInSamples   | Shows only required fileds in request samples                                                                                                         | boolean      |
+| auth                    | Auth Options                                                                                                                                          | AuthOptions  | See AuthOptions info                       |
+| AuthOptions info        |
+| enabled                 | If enabled, a prompt will pop out asking for authentication details, default: `false`                                                                 | boolean      |
+| user                    | User name, default: `admin`                                                                                                                           | string       |
+| password                | User password, default: `123`                                                                                                                         | string       |
 
 **Note**: If you want to change your ReDoc theme settings, take a look at the official ReDoc documentation: <https://github.com/Redocly/redoc/blob/master/src/theme.ts>
 
@@ -131,8 +136,10 @@ Bellow are a list of changes, some might go undocumented
 - 1.2.1 - Updated to work with the latest version of nest swagger module
 - 1.2.2 - Fixed issue with URL on windows
 - 1.3.0 - Added favicon option (by @joemaidman)
+- 2.0.0 - Added authentication option, fixed issues with CSP and nestjs version compatibility issues
 
 ## 📋 ToDo
 
 - Add Fastify support
 - Add the option to use a spec URL instead of document
+- Fix tests

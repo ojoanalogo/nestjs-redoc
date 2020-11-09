@@ -2,12 +2,12 @@ import { HttpServer, INestApplication } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { OpenAPIObject } from '@nestjs/swagger';
 import { Request, Response } from 'express';
-import { join } from 'path';
+import expressAuth from 'express-basic-auth';
+import handlebars from 'express-handlebars';
+import pathModule from 'path';
 import { resolve } from 'url';
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces';
 import { schema } from './model/options.model';
-import handlebars = require('express-handlebars');
-
 export class RedocModule {
   /**
    * Setup ReDoc frontend
@@ -37,7 +37,7 @@ export class RedocModule {
       ) {
         return this.setupFastify();
       }
-      return this.setupExpress(
+      return await this.setupExpress(
         path,
         <NestExpressApplication>app,
         redocDocument,
@@ -74,12 +74,13 @@ export class RedocModule {
    * @param document - ReDoc document object
    * @param options - Init options
    */
-  private static setupExpress(
+  private static async setupExpress(
     path: string,
     app: NestExpressApplication,
     document: RedocDocument,
     options: RedocOptions
   ) {
+    const httpAdapter = app.getHttpAdapter();
     // Normalize URL path to use
     const finalPath = this.normalizePath(path);
     // Add a slash to the end of the URL path to use in URL resolve function
@@ -87,43 +88,64 @@ export class RedocModule {
       finalPath.slice(-1) !== '/' ? finalPath + '/' : finalPath;
     // Serve swagger spec in another URL appended to the normalized path
     const docUrl = resolve(resolvedPath, `${options.docName}.json`);
+    // create helper to convert metadata to JSON
     const hbs = handlebars.create({
       helpers: {
-        toJSON: function(object: any) {
+        toJSON: function (object: any) {
           return JSON.stringify(object);
-        }
+        },
+      },
+    });
+    // spread redoc options
+    const { title, favicon, theme, logo, ...otherOptions } = options;
+    // create render object
+    const renderData = {
+      data: {
+        title,
+        docUrl,
+        favicon,
+        options: otherOptions,
+        ...(theme && {
+          theme: {
+            ...theme,
+          },
+        }),
+      },
+    };
+    // this is our handlebars file path
+    const redocFilePath = pathModule.join(
+      __dirname,
+      '..',
+      'views',
+      'redoc.handlebars'
+    );
+    // get handlebars rendered HTML
+    const redocHTML = await hbs.render(redocFilePath, renderData);
+    // Serve ReDoc Frontend
+    httpAdapter.get(finalPath, async (req: Request, res: Response) => {
+      const sendPage = () => {
+        res.setHeader(
+          'Content-Security-Policy',
+          "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';"
+        );
+        // whoosh
+        res.send(redocHTML);
+      };
+      if (options.auth.enabled) {
+        const { user, password } = options.auth;
+        expressAuth({ users: { [user]: password }, challenge: true })(
+          req,
+          res,
+          () => {
+            sendPage();
+          }
+        );
+      } else {
+        sendPage();
       }
     });
-    // Set app to use handlebars as engine
-    app.engine('handlebars', hbs.engine);
-    app.set('view engine', 'handlebars');
-    // Set views folder
-    app.set('views', join(__dirname, '..', 'views'));
-    // Serve ReDoc Frontend
-    app.getHttpAdapter().get(finalPath, (req: Request, res: Response) => {
-      const { title, favicon, theme, logo, ...otherOptions } = options;
-      const renderData = {
-        data: {
-          title,
-          docUrl,
-          favicon,
-          options: otherOptions,
-          ...(theme && {
-            theme: {
-              ...theme
-            }
-          })
-        }
-      };
-      res.render('redoc', {
-        /** Tell handlebars to not use a main layout */
-        layout: false,
-        debug: renderData,
-        ...renderData
-      });
-    });
     // Serve swagger spec json
-    app.getHttpAdapter().get(docUrl, (req: Request, res: Response) => {
+    httpAdapter.get(docUrl, (req: Request, res: Response) => {
       res.setHeader('Content-Type', 'application/json');
       res.send(document);
     });

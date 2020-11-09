@@ -1,5 +1,5 @@
 import { OpenAPIObject } from '@nestjs/swagger';
-import { LogoOptions } from './redoc_options.interface';
+import { LogoOptions } from './redocOptions.interface';
 
 export interface RedocDocument extends Partial<OpenAPIObject> {
   info: OpenAPIObject['info'] & {

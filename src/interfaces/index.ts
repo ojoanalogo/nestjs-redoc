@@ -1,2 +1,2 @@
-export * from './redoc_options.interface';
-export * from './redoc_document.interface';
+export * from './redocDocument.interface';
+export * from './redocOptions.interface';

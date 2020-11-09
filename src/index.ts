@@ -1,2 +1,2 @@
-export * from './redoc-module';
 export * from './interfaces';
+export * from './redoc-module';

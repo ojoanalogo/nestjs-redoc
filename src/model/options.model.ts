@@ -31,4 +31,9 @@ export const schema = (document: OpenAPIObject) =>
     disableSearch: Joi.boolean().optional().default(false),
     onlyRequiredInSamples: Joi.boolean().optional().default(false),
     docName: Joi.string().optional().default('swagger'),
+    auth: {
+      enabled: Joi.boolean().optional().default(false),
+      user: Joi.string().default('admin'),
+      password: Joi.string().default('123'),
+    },
   });

@@ -43,23 +43,21 @@ describe('redoc-module', () => {
       expect(
         RedocModule.setup('some/path', app, swagger, {
           logo: {
-            url: 'http://localhost:3333/test.png'
-          }
+            url: 'http://localhost:3333/test.png',
+          },
         })
       ).resolves.toBe(undefined);
     });
     it('should server the documentation', async () => {
       swagger.info = {
         title: 'some title',
-        version: '0.1'
+        version: '0.1',
       };
       await RedocModule.setup('/doc', app, swagger, {
-        theme: {}
+        theme: {},
       });
       await app.init();
-      await request(app.getHttpServer())
-        .get('/doc')
-        .expect(200);
+      await request(app.getHttpServer()).get('/doc').expect(200);
       await request(app.getHttpServer())
         .get('/doc/swagger.json', (result) => console.log(result))
         .expect(200);
@@ -91,7 +89,7 @@ describe('redoc-module', () => {
       const module = await Test.createTestingModule({}).compile();
       app = module.createNestApplication({
         initHttpServer: jest.fn(),
-        getHttpServer: jest.fn()
+        getHttpServer: jest.fn(),
       } as any);
       const options = new DocumentBuilder()
         .setDescription('Test swagger Doc')
@@ -101,9 +99,15 @@ describe('redoc-module', () => {
 
     it('should throw an error for now', async () => {
       try {
-        await RedocModule.setup('some/path', app, swagger, {
-          logo: { url: 'notaUrl' }
-        });
+        await RedocModule.setup(
+          'some/path',
+          app,
+          swagger,
+          {
+            logo: { url: 'notaUrl' },
+          },
+          { enable: false }
+        );
       } catch (error) {
         // console.log(error);
         // expect(typeof error).toBe(TypeError);

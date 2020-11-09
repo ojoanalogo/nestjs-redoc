@@ -40,10 +40,15 @@ export interface RedocOptions {
   onlyRequiredInSamples?: boolean;
   /** Name of the swagger json spec file */
   docName?: string;
-}
-
-export interface RedocTheme {
-  color: '';
+  /** Authentication options */
+  auth?: {
+    // Default value is false
+    enabled: boolean;
+    // If auth is enabled but no user is provided the default value is "admin"
+    user: string;
+    // If auth is enabled but no password is provided the default value is "123"
+    password: string;
+  };
 }
 
 export interface LogoOptions {

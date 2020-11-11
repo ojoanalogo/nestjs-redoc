@@ -49,6 +49,11 @@ export interface RedocOptions {
     // If auth is enabled but no password is provided the default value is "123"
     password: string;
   };
+
+  /** Vendor extensions */
+
+  /** If set, group tags in categories in the side menu. Tags not added to a group will not be displayed. */
+  tagGroups?: TagGroupOptions[];
 }
 
 export interface LogoOptions {
@@ -60,4 +65,9 @@ export interface LogoOptions {
   altText?: string;
   /** href tag for logo, it defaults to the one used in your API spec */
   href?: string;
+}
+
+export interface TagGroupOptions {
+  name: string;
+  tags: string[];
 }

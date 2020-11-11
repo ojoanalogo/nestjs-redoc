@@ -36,4 +36,12 @@ export const schema = (document: OpenAPIObject) =>
       user: Joi.string().default('admin'),
       password: Joi.string().default('123'),
     },
+    tagGroups: Joi.array()
+      .items(
+        Joi.object({
+          name: Joi.string(),
+          tags: Joi.array().items(Joi.string()),
+        })
+      )
+      .optional(),
   });

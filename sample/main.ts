@@ -35,6 +35,12 @@ async function bootstrap() {
       user: 'admin',
       password: '123',
     },
+    tagGroups: [
+      {
+        name: 'Core resources',
+        tags: ['cats'],
+      },
+    ],
   };
   await RedocModule.setup('docs', app, document, redocOptions);
   await app.listen(8000);

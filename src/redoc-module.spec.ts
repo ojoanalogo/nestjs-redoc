@@ -3,7 +3,7 @@ import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { Test } from '@nestjs/testing';
 import 'reflect-metadata';
-import * as request from 'supertest';
+import request from 'supertest';
 import { RedocModule } from './redoc-module';
 
 describe('redoc-module', () => {
@@ -99,15 +99,9 @@ describe('redoc-module', () => {
 
     it('should throw an error for now', async () => {
       try {
-        await RedocModule.setup(
-          'some/path',
-          app,
-          swagger,
-          {
-            logo: { url: 'notaUrl' },
-          },
-          { enable: false }
-        );
+        await RedocModule.setup('some/path', app, swagger, {
+          logo: { url: 'notaUrl' },
+        });
       } catch (error) {
         // console.log(error);
         // expect(typeof error).toBe(TypeError);

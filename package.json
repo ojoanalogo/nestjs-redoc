@@ -12,7 +12,7 @@
     "build": "tsc -p ./tsconfig.build.json",
     "format": "prettier --write \"./src/**/*.ts\"",
     "format:check": "prettier --check \"./src/**/*.ts\"",
-    "lint": "eslint 'src/**/*.ts' --fix",
+    "lint": "eslint \"./src/**/*.ts\" --fix",
     "prepublish:next": "npm run build",
     "publish:next": "npm publish --access public --tag next",
     "prepublish": "npm run build",

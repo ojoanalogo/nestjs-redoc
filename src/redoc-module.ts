@@ -8,6 +8,7 @@ import pathModule from 'path';
 import { resolve } from 'url';
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces';
 import { schema } from './model/options.model';
+
 export class RedocModule {
   /**
    * Setup ReDoc frontend
@@ -173,6 +174,11 @@ export class RedocModule {
       const logoOption: Partial<LogoOptions> = { ...options.logo };
       document.info['x-logo'] = logoOption;
     }
+
+    if (options.tagGroups) {
+      document['x-tagGroups'] = options.tagGroups;
+    }
+
     return document;
   }
 }

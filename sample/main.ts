@@ -23,7 +23,7 @@ async function bootstrap() {
     logo: {
       url: 'https://redocly.github.io/redoc/petstore-logo.png',
       backgroundColor: '#F0F0F0',
-      altText: 'Bonusami Logo',
+      altText: 'PetStore Logo',
     },
     sortPropsAlphabetically: true,
     hideDownloadButton: false,

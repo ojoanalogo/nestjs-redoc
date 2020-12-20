@@ -153,6 +153,7 @@ Bellow are a list of changes, some might go undocumented
 - 1.3.0 - Added favicon option (by @joemaidman)
 - 2.0.0 - Added authentication option, fixed issues with CSP and nestjs version compatibility issues
 - 2.1.0 - Added x-tagGroups extension property
+- 2.1.1 - Fixed CSP issue on Safari browser
 
 ## 📋 ToDo
 

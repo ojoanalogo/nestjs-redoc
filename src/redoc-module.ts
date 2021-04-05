@@ -98,13 +98,14 @@ export class RedocModule {
       },
     });
     // spread redoc options
-    const { title, favicon, theme, ...otherOptions } = options;
+    const { title, favicon, theme, redocVersion, ...otherOptions } = options;
     // create render object
     const renderData = {
       data: {
         title,
         docUrl,
         favicon,
+        redocVersion,
         options: otherOptions,
         ...(theme && {
           theme: {

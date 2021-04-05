@@ -3,6 +3,7 @@ import { OpenAPIObject } from '@nestjs/swagger';
 
 export const schema = (document: OpenAPIObject) =>
   Joi.object().keys({
+    redocVersion: Joi.string().default('latest'),
     title: Joi.string()
       .optional()
       .default(document.info ? document.info.title : 'Swagger documentation'),

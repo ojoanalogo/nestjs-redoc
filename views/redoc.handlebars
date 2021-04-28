@@ -29,7 +29,7 @@
     let themeJSON = '{{{ toJSON data.theme }}}';
     if (themeJSON === '') { themeJSON = undefined }
     Redoc.init(
-      '{{ data.docUrl }}',
+      './swagger.json',
       {
         ...(themeJSON && {
           theme: {

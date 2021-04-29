@@ -24,7 +24,7 @@
 <body>
   <!-- we provide is specification here -->
   <div id="redoc_container"></div>
-  <script src="https://cdn.jsdelivr.net/npm/redoc/bundles/redoc.standalone.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/redoc@{{data.redocVersion}}/bundles/redoc.standalone.js"> </script>
   <script>
     let themeJSON = '{{{ toJSON data.theme }}}';
     if (themeJSON === '') { themeJSON = undefined }

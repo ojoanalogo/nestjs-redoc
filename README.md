@@ -159,6 +159,7 @@ Bellow are a list of changes, some might go undocumented
 - 2.1.0 - Added x-tagGroups extension property
 - 2.1.1 - Fixed CSP issue on Safari browser
 - 2.2.0 - Added version property, this way you can pin redoc to a specific version
+- 2.2.2 - Updated to support Nest 8
 
 ## 📋 ToDo
 

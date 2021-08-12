@@ -122,6 +122,10 @@ await RedocModule.setup('/docs', app, document, redocOptions);
 | Tag Group options info  |
 | name                    | Tag name                                                                                                                                              | string            |
 | tags                    | Tag collection                                                                                                                                        | string[]          |
+| redocVersion            | Set an specific redoc version                                                                                                                         | string,number     | By default it's "latest"                   |
+
+
+
 
 **Note**: If you want to change your ReDoc theme settings, take a look at the official ReDoc documentation: <https://github.com/Redocly/redoc/blob/master/src/theme.ts>
 
@@ -154,6 +158,8 @@ Bellow are a list of changes, some might go undocumented
 - 2.0.0 - Added authentication option, fixed issues with CSP and nestjs version compatibility issues
 - 2.1.0 - Added x-tagGroups extension property
 - 2.1.1 - Fixed CSP issue on Safari browser
+- 2.2.0 - Added version property, this way you can pin redoc to a specific version
+- 2.2.2 - Updated to support Nest 8
 
 ## 📋 ToDo
 

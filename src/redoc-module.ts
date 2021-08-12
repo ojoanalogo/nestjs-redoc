@@ -7,7 +7,7 @@ import handlebars from 'express-handlebars';
 import pathModule from 'path';
 import { resolve } from 'url';
 import { LogoOptions, RedocDocument, RedocOptions } from './interfaces';
-import { schema } from './model/options.model';
+import { schema } from './model';
 
 export class RedocModule {
   /**
@@ -121,10 +121,16 @@ export class RedocModule {
       'views',
       'redoc.handlebars'
     );
+
     // get handlebars rendered HTML
     const redocHTML = await hbs.render(redocFilePath, renderData);
     // Serve ReDoc Frontend
     httpAdapter.get(finalPath, async (req: Request, res: Response) => {
+      if (!req.url.endsWith('/')) {
+        res.redirect(301, req.url + '/');
+        return;
+      }
+
       const sendPage = () => {
         // Content-Security-Policy: worker-src 'self' blob:
         res.setHeader(
@@ -147,6 +153,7 @@ export class RedocModule {
         sendPage();
       }
     });
+
     // Serve swagger spec json
     httpAdapter.get(docUrl, (req: Request, res: Response) => {
       res.setHeader('Content-Type', 'application/json');

@@ -1,4 +1,4 @@
-import Joi = require('@hapi/joi');
+import Joi = require('joi');
 import { OpenAPIObject } from '@nestjs/swagger';
 
 export const schema = (document: OpenAPIObject) =>

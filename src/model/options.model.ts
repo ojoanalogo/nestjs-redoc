@@ -1,7 +1,7 @@
-import Joi = require('@hapi/joi');
+import Joi from 'joi';
 import { OpenAPIObject } from '@nestjs/swagger';
 
-export const schema = (document: OpenAPIObject) =>
+export const schema = (document: OpenAPIObject): Joi.Schema =>
   Joi.object().keys({
     redocVersion: Joi.string().default('latest'),
     title: Joi.string()

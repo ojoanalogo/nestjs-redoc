@@ -30,6 +30,7 @@ async function bootstrap() {
     hideHostname: false,
     noAutoAuth: true,
     pathInMiddlePanel: true,
+    expandResponses: '200',
     auth: {
       enabled: true,
       user: 'admin',
